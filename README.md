@@ -1,16 +1,27 @@
-# React + Vite
+# React Product CRUD Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Vite + React frontend that communicates with the Laravel backend repository.
 
-Currently, two official plugins are available:
+## First-time setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Run `npm install`.
+2. Copy `.env.example` to `.env`.
+3. Start the Laravel backend at `http://127.0.0.1:8000`.
+4. Run `npm run dev`.
 
-## React Compiler
+## Configuration
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```env
+VITE_API_URL=http://127.0.0.1:8000/api
+```
 
-## Expanding the ESLint configuration
+Only variables starting with `VITE_` can be read by React in Vite.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Included CRUD actions
+
+- **Create** a product
+- **Read** the product list
+- **Update** a product
+- **Delete** a product
+
+The main UI and API calls are in `src/App.jsx`. Comments explain where to change fields, URLs, and requests.
