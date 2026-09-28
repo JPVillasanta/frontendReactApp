@@ -72,8 +72,8 @@ function App() {
 
       setForm(emptyProduct)
       setEditingId(null)
-      setMessage(isEditing ? 'Product updated.' : 'Product created.')
       await loadProducts()
+      setMessage(isEditing ? 'Product updated.' : 'Product created.')
     } catch (error) {
       setMessage(error.message)
     }
@@ -107,8 +107,8 @@ function App() {
 
       if (!response.ok) throw new Error('Could not delete product.')
 
-      setMessage('Product deleted.')
       await loadProducts()
+      setMessage('Product deleted.')
     } catch (error) {
       setMessage(error.message)
     }
