@@ -92,3 +92,98 @@ button.danger { background: #dc2626; }
   .two-columns { grid-template-columns: 1fr; }
   .product-list li { align-items: flex-start; flex-direction: column; }
 }
+
+
+/* Shared application shell */
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.app-header {
+  background: #0f172a;
+  color: white;
+  margin: 0;
+  padding: 22px max(24px, calc((100% - 1200px) / 2));
+}
+.app-header h1 { color: white; font-size: 1.6rem; margin: 0 0 4px; }
+.app-header .eyebrow { margin: 0 0 4px; color: #93c5fd; }
+.header-subtitle { margin: 0; color: #cbd5e1; }
+.navbar {
+  display: flex;
+  gap: 8px;
+  padding: 10px max(24px, calc((100% - 1200px) / 2));
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+.navbar a, .sidebar a {
+  color: #334155;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 9px 12px;
+}
+.navbar a.active, .sidebar a.active { color: #1d4ed8; background: #eff6ff; font-weight: 700; }
+.app-body {
+  width: min(1200px, calc(100% - 32px));
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 24px;
+  flex: 1;
+}
+.sidebar {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-self: start;
+}
+.sidebar h2 { font-size: 1rem; margin: 0 0 8px; }
+.sidebar-note {
+  display: grid;
+  gap: 8px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 14px;
+  padding-top: 14px;
+  font-size: 0.85rem;
+}
+.sidebar-note code { white-space: nowrap; font-size: 0.75rem; }
+.page-content { min-width: 0; }
+.page-content .container { width: 100%; padding: 0; }
+.page-heading { margin-bottom: 24px; }
+.page-heading h2 { font-size: 1.8rem; margin-bottom: 8px; }
+.landing-hero {
+  padding: 32px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  background: #dbeafe;
+}
+.landing-hero h2 { font-size: 1.8rem; }
+.landing-hero p { max-width: 650px; }
+.primary-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+}
+.primary-link:hover { background: #1d4ed8; }
+.error-message { color: #b91c1c; font-weight: 600; }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+.footer {
+  margin: 0;
+  padding: 18px 24px;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+  color: #64748b;
+  background: white;
+}
+.footer p { margin: 0; }
+
+@media (max-width: 700px) {
+  .app-body { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .navbar { padding-inline: 16px; }
+  .app-header { padding: 18px 16px; }
+}
