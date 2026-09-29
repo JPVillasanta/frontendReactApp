@@ -1,27 +1,41 @@
 # React Product CRUD Frontend
 
-A simple Vite + React frontend that communicates with the Laravel backend repository.
+A Vite + React frontend that communicates with the Laravel API in the companion `backendLaravelApp` repository.
 
-## First-time setup
+## Run locally
 
-1. Run `npm install`.
-2. Copy `.env.example` to `.env`.
-3. Start the Laravel backend at `http://127.0.0.1:8000`.
-4. Run `npm run dev`.
+1. Pull the latest changes.
+2. Install dependencies with `npm.cmd install` in PowerShell. This installs React Router and updates the lock file.
+3. Copy `.env.example` to `.env`.
+4. Start Laravel at `http://127.0.0.1:8000`.
+5. Start React with `npm.cmd run dev`.
 
-## Configuration
+## API configuration
+
+The frontend reads its API base URL from `VITE_API_URL`:
 
 ```env
 VITE_API_URL=http://127.0.0.1:8000/api
 ```
 
-Only variables starting with `VITE_` can be read by React in Vite.
+The Product page calls `/products` under that base URL.
 
-## Included CRUD actions
+## App structure
 
-- **Create** a product
-- **Read** the product list
-- **Update** a product
-- **Delete** a product
+```text
+src/
+├── main.jsx                 # Starts React and renders App
+├── App.jsx                  # Shared layout and route definitions
+├── pages/
+│   ├── LandingPage.jsx      # Home route (/)
+│   └── ProductPage.jsx     # Product CRUD route (/product)
+└── components/
+    ├── Header.jsx
+    ├── Nav.jsx
+    ├── SideBar.jsx
+    ├── Footer.jsx
+    ├── ProductForm.jsx     # Reusable create/edit form
+    └── ProductList.jsx     # Reusable list and row actions
+```
 
-The main UI and API calls are in `src/App.jsx`. Comments explain where to change fields, URLs, and requests.
+The page owns API requests and product state. Reusable components receive data and event handlers through props.
