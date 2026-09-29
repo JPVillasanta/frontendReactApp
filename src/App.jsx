@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/product" element={<ProductPage />} />
       </Routes>
     </div>
   )
