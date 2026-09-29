@@ -1,6 +1,6 @@
 import './index.css'
 
-function LandingPage() {
+function ProductPage() {
   return (
     <main className="container">
         
@@ -8,4 +8,4 @@ function LandingPage() {
   )
 }
 
-export default LandingPage
+export default ProductPage
