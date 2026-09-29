@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ProductForm from '../components/ProductForm.jsx'
 import ProductList from '../components/ProductList.jsx'
 
@@ -25,12 +25,7 @@ function ProductPage() {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    loadProducts()
-  }, [])
-
-  async function loadProducts() {
-    setLoading(true)
+  const loadProducts = useCallback(async () => {
     setError('')
 
     try {
@@ -43,6 +38,16 @@ function ProductPage() {
     } finally {
       setLoading(false)
     }
+  }, [])
+
+  // loadProducts is memoized, so this effect runs once per page mount.
+  useEffect(() => {
+    loadProducts()
+  }, [loadProducts])
+
+  async function refreshProducts() {
+    setLoading(true)
+    await loadProducts()
   }
 
   function handleChange(event) {
@@ -84,6 +89,7 @@ function ProductPage() {
       }
 
       resetForm()
+      setLoading(true)
       await loadProducts()
       setMessage(editing ? 'Product updated.' : 'Product created.')
     } catch (requestError) {
@@ -124,6 +130,7 @@ function ProductPage() {
       })
       if (!response.ok) throw new Error('Could not delete product.')
 
+      setLoading(true)
       await loadProducts()
       setMessage('Product deleted.')
     } catch (requestError) {
@@ -154,7 +161,7 @@ function ProductPage() {
       <ProductList
         products={products}
         loading={loading}
-        onRefresh={loadProducts}
+        onRefresh={refreshProducts}
         onEdit={startEditing}
         onDelete={deleteProduct}
       />
